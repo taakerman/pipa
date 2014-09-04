@@ -1,0 +1,25 @@
+{
+    "name": "taakerman/pipa", 
+    "description": "Pipa (PHP Image Processing Algorithms) is a library containing various algorithms for dealing with images in PHP. Including pHash (image fingerprinting for similarity measurement), Various histograms, Color Space conversions, Interpolation, Normalization, Histogram Equalization, Desaturation, Grayscaling, Quantization, Thresholding and more...", 
+    "type": "library", 
+
+    "config": {
+        "preferred-install": "dist"
+    },
+    
+    "autoload": {
+        "psr-4": {
+            "Taakerman\\Pipa\\": "src/"
+        }
+    },
+
+    "require": {
+        "intervention/image": "2.0.0", 
+        "malenki/math": "dev-master"
+    }, 
+    
+    "require-dev": {
+        "phpunit/phpunit": "4.1.*"
+    }
+}
+

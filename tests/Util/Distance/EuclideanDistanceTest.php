@@ -1,0 +1,58 @@
+<?php
+
+/*
+ * THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY 
+ * KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
+ * PARTICULAR PURPOSE. 
+ * 
+ * You may copy and reuse as you please
+ */
+
+namespace Taakerman\Pipa\Util\Distance;
+
+use Taakerman\Pipa\Util\Distance\EuclideanDistance;
+
+use Taakerman\Pipa\PipaUnitTest;
+
+class EuclideanDistanceTest extends PipaUnitTest {
+
+    public function test1d() {
+        $fn = new EuclideanDistance();
+        $dist = $fn->cartesians(1, 3);
+        $this->assertEquals(2, $dist);
+        
+        $dist = $fn->cartesians(-2, 1);
+        $this->assertEquals(3, $dist);
+        
+        $dist = $fn->cartesians(1, -2);
+        $this->assertEquals(3, $dist);
+        
+        $dist = $fn->cartesians(0.314, -6.034);
+        $this->assertEquals(6.348, $dist, '', self::DELTA);
+    }
+    
+    public function test2d() {
+        $fn = new EuclideanDistance();
+        $dist = $fn->cartesians(array(1,2), array(8,9));
+        $this->assertEquals(9.8994949366117, $dist, '', self::DELTA);
+
+        $dist = $fn->cartesians(array(-8, -9), array(-1,-2));
+        $this->assertEquals(9.8994949366117, $dist, '', self::DELTA);
+        
+        $dist = $fn->cartesians(array(-1,-2), array(-8, -9));
+        $this->assertEquals(9.8994949366117, $dist, '', self::DELTA);
+        
+        $dist = $fn->cartesians(array(-30.765,15.62093), array(3.004,-4.5));
+        $this->assertEquals(39.308996235784, $dist, '', self::DELTA);
+    }
+    
+    public function test3d() {
+        $fn = new EuclideanDistance();
+        $dist = $fn->cartesians(array(1,2,3), array(8,9,0));
+        $this->assertEquals(10.344080432789, $dist, '', self::DELTA);
+        
+        $dist = $fn->cartesians(array(-4.632,65.78,-105), array(-77,43.778,0.005));
+        $this->assertEquals(129.4112261475, $dist, '', self::DELTA);
+    }
+}
